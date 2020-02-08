@@ -1,12 +1,7 @@
 package com.dcx.pas1.housinapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="usuario")
@@ -27,6 +22,10 @@ public class Usuario {
 
   @NotNull
   private String datanascimento;
+
+  @ManyToOne
+  @JoinColumn
+  private Anuncio anuncios;
 
   public Long getCodigo() {
     return codigo;
@@ -66,6 +65,14 @@ public class Usuario {
 
   public void setdatanascimento(String datanascimento) {
     this.datanascimento = datanascimento;
+  }
+
+  public Anuncio getAnuncios() {
+    return anuncios;
+  }
+
+  public void setAnuncios(Anuncio anuncios) {
+    this.anuncios = anuncios;
   }
 
   @Override
