@@ -9,29 +9,21 @@ public class Anuncio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long codigo;
-
-    @OneToOne
-    @JoinColumn(name = "casasAnunciadas")
-    @NotNull
-    private Casa casa;
+    private long codigoAnuncio;
 
     @Column
     @NotNull
     private String descricao;
 
-    @OneToMany(mappedBy = "anuncio")
+    @OneToOne
     @NotNull
+    @JoinColumn(name="codigo_casa")
+    private Casa casa;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name="codigo_usuario")
     private Usuario usuario;
-
-
-    public long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
-    }
 
     public Casa getCasa() {
         return casa;

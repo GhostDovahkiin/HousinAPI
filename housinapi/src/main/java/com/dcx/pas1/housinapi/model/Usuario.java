@@ -23,10 +23,6 @@ public class Usuario {
   @NotNull
   private String datanascimento;
 
-  @ManyToOne
-  @JoinColumn
-  private Anuncio anuncios;
-
   public Long getCodigo() {
     return codigo;
   }
@@ -65,14 +61,6 @@ public class Usuario {
 
   public void setdatanascimento(String datanascimento) {
     this.datanascimento = datanascimento;
-  }
-
-  public Anuncio getAnuncios() {
-    return anuncios;
-  }
-
-  public void setAnuncios(Anuncio anuncios) {
-    this.anuncios = anuncios;
   }
 
   @Override

@@ -1,28 +1,54 @@
 package com.dcx.pas1.housinapi.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Embeddable;
 
-@Entity
-@Table(name = "endereco")
+@Embeddable
 public class Endereco {
 
-    @Column
-    @NotNull
     private String logradouro;
-
-    @Column
-    @NotNull
+    private String numero;    
+    private String bairro;
+    private String cep;
     private String cidade;
 
-    @Column
-    @NotNull
-    private String cep;
+    public String getLogradouro() {
+        return logradouro;
+    }
 
-    @Column
-    @NotNull
-    private String estado;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
 
 }
