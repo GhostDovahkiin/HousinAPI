@@ -15,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.dcx.pas1.housinapi.repository.CasaRepository;
-import com.dcx.pas1.housinapi.repository.UsuarioRepository;
 import com.dcx.pas1.housinapi.model.Casa;
-import com.dcx.pas1.housinapi.model.Usuario;
 import org.springframework.http.HttpStatus;
 
 @RestController
