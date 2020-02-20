@@ -19,59 +19,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import com.dcx.pas1.housinapi.repository.UsuarioRepository;
-import com.dcx.pas1.housinapi.model.Usuario;
+import com.dcx.pas1.housinapi.repository.CasaRepository;
+import com.dcx.pas1.housinapi.model.Casa;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PutMapping;
-
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/casas")
+public class CasaController {
 
   @Autowired
-  private UsuarioRepository usuarioRepository;
+  private CasaRepository casaRepository;
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  public ResponseEntity<?> getUsuarios(){
-    List<Usuario> usuarios = usuarioRepository.findAll();
-    return !usuarios.isEmpty() ? ResponseEntity.ok(usuarios) : ResponseEntity.noContent().build();
+  public ResponseEntity<?> getCasa(){
+    List<Casa> casas = casaRepository.findAll();
+    return !casas.isEmpty() ? ResponseEntity.ok(casas) : ResponseEntity.noContent().build();
   }
 	
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario, HttpServletResponse response) {
-		Usuario usuariosalvos = usuarioRepository.save(usuario);
+	public ResponseEntity<Casa> criar(@Valid @RequestBody Casa casa, HttpServletResponse response) {
+		Casa casaSalva = casaRepository.save(casa);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
-				.buildAndExpand(usuariosalvos.getCodigo()).toUri();
+				.buildAndExpand(casaSalva.getCodigoCasa()).toUri();
 			response.setHeader("Location", uri.toASCIIString());
 			
-			return ResponseEntity.created(uri).body(usuariosalvos);
+			return ResponseEntity.created(uri).body(casaSalva);
 	}
 	
 	@GetMapping("/{codigo}")
   @ResponseStatus(HttpStatus.FOUND)
-  public Usuario buscarPeloCodigo(@PathVariable Long codigo) {
-    return usuarioRepository.findById(codigo)
+  public Casa buscarPeloCodigo(@PathVariable Long codigo) {
+    return casaRepository.findById(codigo)
       .orElseThrow(() -> new EntityNotFoundException());
   }
   
   @DeleteMapping("/{codigo}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void removerPeloCodigo(@PathVariable Long codigo){
-    usuarioRepository.deleteById(codigo);
-      
+  public void deletaPeloCodigo(@PathVariable Long codigo){
+    this.casaRepository.deleteById(codigo);
   }
 
   @PutMapping("/{codigo}")
-  public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long codigo, @RequestBody Usuario usuario){
-    Usuario usuariosalvo = usuarioRepository.findById(codigo)
-    .orElseThrow(() -> new EntityNotFoundException());
-    BeanUtils.copyProperties(usuario, usuariosalvo, "codigo");
-    usuarioRepository.save(usuariosalvo);
-    return ResponseEntity.ok(usuariosalvo);
+  public ResponseEntity<Casa> atualizaCasa(@PathVariable Long codigo, @Valid @RequestBody Casa casa){
+    Casa casasalvo = this.casaRepository.findById(codigo)
+      .orElseThrow(() -> new EntityNotFoundException());
+    BeanUtils.copyProperties(casa, casasalvo, "codigo");
+    this.casaRepository.save(casasalvo);
+    return ResponseEntity.ok(casasalvo);
   }
 	
 }

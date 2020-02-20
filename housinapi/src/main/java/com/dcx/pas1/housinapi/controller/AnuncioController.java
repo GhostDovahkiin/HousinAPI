@@ -19,59 +19,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import com.dcx.pas1.housinapi.repository.UsuarioRepository;
-import com.dcx.pas1.housinapi.model.Usuario;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PutMapping;
 
+import com.dcx.pas1.housinapi.repository.AnunciosRepository;
+import com.dcx.pas1.housinapi.model.Anuncio;
+import org.springframework.http.HttpStatus;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/anuncios")
+public class AnuncioController {
 
   @Autowired
-  private UsuarioRepository usuarioRepository;
+  private AnunciosRepository anuncioRepository;
 
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
-  public ResponseEntity<?> getUsuarios(){
-    List<Usuario> usuarios = usuarioRepository.findAll();
-    return !usuarios.isEmpty() ? ResponseEntity.ok(usuarios) : ResponseEntity.noContent().build();
+  public ResponseEntity<?> getAnuncios(){
+    List<Anuncio> anuncios = anuncioRepository.findAll();
+    return !anuncios.isEmpty() ? ResponseEntity.ok(anuncios) : ResponseEntity.noContent().build();
   }
 	
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario, HttpServletResponse response) {
-		Usuario usuariosalvos = usuarioRepository.save(usuario);
+	public ResponseEntity<Anuncio> criar(@Valid @RequestBody Anuncio anuncio, HttpServletResponse response) {
+		Anuncio anunciosSalvos = anuncioRepository.save(anuncio);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
-				.buildAndExpand(usuariosalvos.getCodigo()).toUri();
+				.buildAndExpand(anunciosSalvos.getCodigo()).toUri();
 			response.setHeader("Location", uri.toASCIIString());
 			
-			return ResponseEntity.created(uri).body(usuariosalvos);
+			return ResponseEntity.created(uri).body(anunciosSalvos);
 	}
 	
 	@GetMapping("/{codigo}")
   @ResponseStatus(HttpStatus.FOUND)
-  public Usuario buscarPeloCodigo(@PathVariable Long codigo) {
-    return usuarioRepository.findById(codigo)
+  public Anuncio buscarPeloCodigo(@PathVariable Long codigo) {
+    return anuncioRepository.findById(codigo)
       .orElseThrow(() -> new EntityNotFoundException());
   }
   
   @DeleteMapping("/{codigo}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void removerPeloCodigo(@PathVariable Long codigo){
-    usuarioRepository.deleteById(codigo);
-      
+  public void deletaPeloCodigo(@PathVariable Long codigo){
+    this.anuncioRepository.deleteById(codigo);
   }
 
   @PutMapping("/{codigo}")
-  public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long codigo, @RequestBody Usuario usuario){
-    Usuario usuariosalvo = usuarioRepository.findById(codigo)
-    .orElseThrow(() -> new EntityNotFoundException());
-    BeanUtils.copyProperties(usuario, usuariosalvo, "codigo");
-    usuarioRepository.save(usuariosalvo);
-    return ResponseEntity.ok(usuariosalvo);
+  public ResponseEntity<Anuncio> atualizaAnuncio(@PathVariable Long codigo, @Valid @RequestBody Anuncio anuncio){
+    Anuncio anunciosalvo = this.anuncioRepository.findById(codigo)
+      .orElseThrow(() -> new EntityNotFoundException());
+    BeanUtils.copyProperties(anuncio, anunciosalvo, "codigo");
+    this.anuncioRepository.save(anunciosalvo);
+    return ResponseEntity.ok(anunciosalvo);
   }
 	
 }
