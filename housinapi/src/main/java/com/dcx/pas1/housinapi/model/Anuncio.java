@@ -1,5 +1,7 @@
 package com.dcx.pas1.housinapi.model;
 
+import java.util.Map;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -48,4 +50,8 @@ public class Anuncio {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public Long getCodigo() {
+        return codigoAnuncio;
+      }
 }
