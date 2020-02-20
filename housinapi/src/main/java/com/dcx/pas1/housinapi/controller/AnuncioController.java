@@ -5,11 +5,15 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -51,6 +55,21 @@ public class AnuncioController {
   public Anuncio buscarPeloCodigo(@PathVariable Long codigo) {
     return anuncioRepository.findById(codigo)
       .orElseThrow(() -> new EntityNotFoundException());
-	}
+  }
+  
+  @DeleteMapping("/{codigo}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void deletaPeloCodigo(@PathVariable Long codigo){
+    this.anuncioRepository.deleteById(codigo);
+  }
+
+  @PutMapping("/{codigo}")
+  public ResponseEntity<Anuncio> atualizaAnuncio(@PathVariable Long codigo, @Valid @RequestBody Anuncio anuncio){
+    Anuncio anunciosalvo = this.anuncioRepository.findById(codigo)
+      .orElseThrow(() -> new EntityNotFoundException());
+    BeanUtils.copyProperties(anuncio, anunciosalvo, "codigo");
+    this.anuncioRepository.save(anunciosalvo);
+    return ResponseEntity.ok(anunciosalvo);
+  }
 	
 }

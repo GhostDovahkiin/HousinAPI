@@ -5,11 +5,15 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -50,6 +54,21 @@ public class CasaController {
   public Casa buscarPeloCodigo(@PathVariable Long codigo) {
     return casaRepository.findById(codigo)
       .orElseThrow(() -> new EntityNotFoundException());
-	}
+  }
+  
+  @DeleteMapping("/{codigo}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void deletaPeloCodigo(@PathVariable Long codigo){
+    this.casaRepository.deleteById(codigo);
+  }
+
+  @PutMapping("/{codigo}")
+  public ResponseEntity<Casa> atualizaCasa(@PathVariable Long codigo, @Valid @RequestBody Casa casa){
+    Casa casasalvo = this.casaRepository.findById(codigo)
+      .orElseThrow(() -> new EntityNotFoundException());
+    BeanUtils.copyProperties(casa, casasalvo, "codigo");
+    this.casaRepository.save(casasalvo);
+    return ResponseEntity.ok(casasalvo);
+  }
 	
 }
