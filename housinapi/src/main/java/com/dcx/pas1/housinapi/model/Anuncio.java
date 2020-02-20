@@ -1,7 +1,5 @@
 package com.dcx.pas1.housinapi.model;
 
-import java.util.Map;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
