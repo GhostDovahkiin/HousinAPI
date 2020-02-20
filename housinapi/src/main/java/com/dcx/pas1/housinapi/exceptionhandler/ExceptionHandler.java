@@ -51,7 +51,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
         }
         return erros;       
         
-    }   
+    }
 
     public static class Erro {
         private String mensagemUsuario;
