@@ -51,7 +51,9 @@ public class CasaController {
 
         return ResponseEntity.created(uri).body(casaSalva);
     }
-
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Retorna a casa pelo ID")
+    })
     @ApiResponse(code = 302, message = "Casa encontrada")
     @ApiOperation(value = "Retorna uma casa específica pelo ID", response = Casa.class, produces = json)
     @GetMapping("/{codigo}")
@@ -60,7 +62,9 @@ public class CasaController {
         return casaRepository.findById(codigo)
                 .orElseThrow(EntityNotFoundException::new);
     }
-
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Deleta uma casa pelo seu ID")
+    })
     @ApiResponse(code = 204, message = "Casa removida com sucesso")
     @ApiOperation(value = "Remove uma casa baseada no seu ID")
     @DeleteMapping("/{codigo}")
