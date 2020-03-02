@@ -1,6 +1,6 @@
 # Housin - Ache a moradia que se encaixa no seu gosto!
 
-![Logo Housin]([https://i.imgur.com/lHUv8X4.png](https://i.imgur.com/lHUv8X4.png))
+![Logo Housin](https://i.imgur.com/lHUv8X4.png)
 > O projeto Housin surgiu na disciplina de ESA 2019.1, onde foi feita toda a documentação e estudo sobre a aplicação do serviço. O objetivo do Housin é recomendar ao usuário (Calouro/Estudante recém chegado na cidade) que está em busca de uma moradia com harmonia focando principalmente nas características pessoais (Aspirations) dos pares.
 
 # Back End - Tecnologias Utilizadas
