@@ -1,5 +1,7 @@
 package com.dcx.pas1.housinapi.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -7,16 +9,20 @@ import javax.validation.constraints.NotNull;
 @Table(name="usuario")
 public class Usuario {
 
+  @ApiModelProperty(value = "Código do usuário",example = "1")
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long codigo;
   
+  @ApiModelProperty(value = "Tipo de usuário", example = "Locador")
   @NotNull
   private String tipo;
 
+  @ApiModelProperty(value = "Nome do usuário", example = "Hanna")
   @NotNull
   private String nome;
 
+  @ApiModelProperty(value = "CPF do usuário", example = "1338449888-00")
   @NotNull
   private String cpf;
 

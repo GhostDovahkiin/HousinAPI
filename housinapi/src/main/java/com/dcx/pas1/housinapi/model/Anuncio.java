@@ -3,14 +3,17 @@ package com.dcx.pas1.housinapi.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModelProperty;
 @Entity
 @Table(name = "anuncio")
 public class Anuncio {
 
+    @ApiModelProperty(value = "Código do anúncio")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigoAnuncio;
 
+    @ApiModelProperty(value = "Descrição do anúncio",example = "Casa disponível para dois moradores" )
     @Column
     @NotNull
     private String descricao;

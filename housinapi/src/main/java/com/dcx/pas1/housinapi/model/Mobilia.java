@@ -1,14 +1,25 @@
 package com.dcx.pas1.housinapi.model;
 
 import javax.persistence.Embeddable;
+import io.swagger.annotations.ApiModelProperty;
+
 
 @Embeddable
 public class Mobilia {
-
+  @ApiModelProperty(value = "Tem fogão?",example = "true")
   private boolean hasFogao;
+
+  @ApiModelProperty(value = "Tem geladeira?",example = "true")
   private boolean hasGeladeira;
+
+  @ApiModelProperty(value = "Tem televisão?",example = "true")
   private boolean hasTv;
+ 
+  
+  @ApiModelProperty(value = "Tem internet?",example = "true")
   private boolean hasInternet;
+
+  @ApiModelProperty(value = "Tem microondas?",example = "false")
   private boolean hasMicroondas;
 
   public boolean isHasFogao() {
