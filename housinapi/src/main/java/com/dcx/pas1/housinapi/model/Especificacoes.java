@@ -1,4 +1,5 @@
 package com.dcx.pas1.housinapi.model;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -12,16 +13,20 @@ import javax.validation.constraints.NotNull;
 @Table(name = "especificacoes")
 public class Especificacoes {
 
+    @ApiModelProperty(value = "Código das especificações", example = "1")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigoEspecificacoes;
 
+    @ApiModelProperty(value = "Quantidade de quartos", example = "3")
     @NotNull
     private int quantQuartos;
 
+    @ApiModelProperty(value = "Quantidade de banheiros", example = "2")
     @NotNull
     private int quantBanheiros;
 
+    @ApiModelProperty(value = "Tem garagem?", example = "True")
     @NotNull
     private boolean hasGaragem;
 
