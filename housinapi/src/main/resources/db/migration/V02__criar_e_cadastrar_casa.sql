@@ -1,0 +1,23 @@
+CREATE TABLE "casa" (
+  codigo_casa SERIAL PRIMARY KEY,
+  quant_moradores integer NULL,
+  quant_quartos integer NULL,
+  quant_banheiros integer NULL,
+  has_garagem varchar(255) default NULL,
+  has_fogao varchar(255) default NULL,
+  has_geladeira varchar(255) default NULL,
+  has_tv varchar(255) default NULL,
+  has_internet varchar(255) default NULL,
+  has_microondas varchar(255) default NULL,
+  logradouro varchar(255) default NULL,
+  numero varchar(255),
+  bairro varchar(255) default NULL,
+  cep varchar(10) default NULL,
+  cidade varchar(255) default NULL
+);
+
+INSERT INTO "casa" (quant_moradores,quant_quartos,quant_banheiros,has_garagem,has_fogao,has_geladeira,has_tv,has_internet,has_microondas,logradouro,numero,bairro,cep,cidade) VALUES (7,5,2,'false','false','false','false','false','true','Ap #157-2247 Accumsan Rd.','921','NDA','28090-107','Rio Tinto'),(3,4,2,'true','true','true','false','true','false','7648 Interdum St.','541','NDA','24783-689','Rio Tinto'),(5,2,1,'true','false','false','true','false','false','908-1875 Maecenas Road','816','Conjunto','52542-687','Mamanguape'),(7,3,2,'true','false','false','true','true','false','P.O. Box 351, 2460 Ipsum St.','481','NDA','83490-314','Mamanguape'),(8,3,2,'true','true','false','false','true','true','256-7485 Molestie Ave','639','NDA','43473-899','Mamanguape');
+INSERT INTO "casa" (quant_moradores,quant_quartos,quant_banheiros,has_garagem,has_fogao,has_geladeira,has_tv,has_internet,has_microondas,logradouro,numero,bairro,cep,cidade) VALUES (7,4,3,'true','true','false','false','false','false','Ap #196-1277 Nec Rd.','490','Centro','23226-321','Rio Tinto'),(1,1,1,'true','true','true','true','true','true','259-2623 Non Rd.','998','Conjunto','21362-509','Mamanguape'),(1,4,1,'false','true','false','false','true','true','561-9292 Suspendisse Road','543','NDA','28368-431','Rio Tinto'),(7,4,3,'false','false','true','true','true','false','P.O. Box 429, 9911 Placerat. St.','540','Centro','95777-215','Mamanguape'),(7,2,1,'true','false','true','false','true','true','294-9962 Sit Ave','973','Conjunto','34160-263','Mamanguape');
+INSERT INTO "casa" (quant_moradores,quant_quartos,quant_banheiros,has_garagem,has_fogao,has_geladeira,has_tv,has_internet,has_microondas,logradouro,numero,bairro,cep,cidade) VALUES (4,5,3,'false','true','true','false','true','false','P.O. Box 565, 637 Tristique Av.','929','NDA','82323-839','Rio Tinto'),(2,3,2,'true','false','false','false','true','false','458-9628 Elit Rd.','928','Conjunto','18179-149','Mamanguape'),(7,4,2,'true','true','false','true','false','true','637-1309 Tincidunt Av.','251','Conjunto','94612-854','Mamanguape'),(1,3,2,'false','true','true','true','true','false','114-2588 Velit. Road','617','Centro','71378-642','Mamanguape'),(5,5,3,'true','false','true','true','true','true','622-7320 Cubilia St.','952','Conjunto','35313-115','Rio Tinto');
+INSERT INTO "casa" (quant_moradores,quant_quartos,quant_banheiros,has_garagem,has_fogao,has_geladeira,has_tv,has_internet,has_microondas,logradouro,numero,bairro,cep,cidade) VALUES (7,4,3,'true','true','false','false','true','false','P.O. Box 582, 1343 Aliquet Street','286','NDA','65809-433','Mamanguape'),(6,5,1,'true','true','true','true','false','true','P.O. Box 559, 1086 Lacus Av.','718','Centro','43222-867','Mamanguape'),(1,2,3,'false','true','false','false','false','true','P.O. Box 694, 6894 Nunc Rd.','648','Conjunto','79537-472','Mamanguape'),(8,4,3,'false','true','true','false','true','true','P.O. Box 547, 6474 Tempus Rd.','613','Centro','72650-115','Rio Tinto'),(4,2,3,'false','false','false','false','true','true','815-1505 Ligula Rd.','834','Centro','70420-500','Mamanguape');
+INSERT INTO "casa" (quant_moradores,quant_quartos,quant_banheiros,has_garagem,has_fogao,has_geladeira,has_tv,has_internet,has_microondas,logradouro,numero,bairro,cep,cidade) VALUES (2,5,2,'false','false','true','true','false','false','6017 Ornare Av.','898','Centro','01637-529','Rio Tinto'),(10,4,2,'false','false','true','false','true','true','P.O. Box 902, 4120 Cursus Av.','436','Conjunto','69220-147','Rio Tinto'),(6,2,2,'false','false','false','false','true','true','7606 Ut, St.','388','Centro','16207-527','Mamanguape'),(10,3,3,'false','false','true','false','false','false','867-3209 Vulputate, St.','609','NDA','36776-552','Rio Tinto'),(8,4,1,'true','false','true','false','false','false','P.O. Box 634, 8099 Scelerisque, Av.','283','Centro','72872-891','Mamanguape');

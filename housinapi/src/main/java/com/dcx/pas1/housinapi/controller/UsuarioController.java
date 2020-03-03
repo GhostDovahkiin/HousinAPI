@@ -2,16 +2,15 @@ package com.dcx.pas1.housinapi.controller;
 
 import com.dcx.pas1.housinapi.model.Usuario;
 import com.dcx.pas1.housinapi.repository.UsuarioRepository;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +33,7 @@ public class UsuarioController {
     @ApiResponse(code = 200, message = "Retorna todos os usuários cadastrados"),
     @ApiResponse(code = 204, message = "Não há usuários cadastrados")
 })
-  @ApiOperation(value = "Retorna todas os usuários cadastrados no sistema.", response = Iterable.class, produces = json)
+  @ApiOperation(value = "Retorna todas os usuários cadastrados no sistema.", response = Usuario.class, responseContainer = "List", produces = json)
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
   public ResponseEntity<?> getUsuarios(){
@@ -45,7 +44,7 @@ public class UsuarioController {
   @ApiResponses(value = {
     @ApiResponse(code = 200, message = "Cadastra um novo usuário")
 })
-  @ApiOperation(value = "Cadastra um novo usuário", response = Iterable.class, produces = json)
+  @ApiOperation(value = "Cadastra um novo usuário", response = Usuario.class, produces = json)
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario, HttpServletResponse response) {

@@ -30,7 +30,7 @@ public class CasaController {
             @ApiResponse(code = 200, message = "Retorna as casas cadastradas"),
             @ApiResponse(code = 204, message = "Não há casas cadastradas")
     })
-    @ApiOperation(value = "Retorna todas as casas cadastradas no sistema.", response = Iterable.class, produces = json)
+    @ApiOperation(value = "Retorna todas as casas cadastradas no sistema.", response = Casa.class, responseContainer = "List", produces = json)
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> recuperarCasas() {
